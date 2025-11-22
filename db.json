@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": "admin-1",
+      "firstName": "Admin",``
+      "lastName": "User",
+      "email": "admin@medicare.com",
+      "password": "$2a$10$SCoUVbnVClp/Rq8u4u8IsuvVSdGInxjeRGna43EIBgzHuLlHotE5.",
+      "role": "admin",
+      "lastLogin": null,
+      "lastLogout": null,
+      "createdAt": "2025-01-01T12:00:00.000Z"
+    }
+  ],
+  "patients": [],
+  "providers": []
+}

@@ -2,10 +2,11 @@
 export const API_ENDPOINTS = {
   AUTH: {
     LOGIN: '/auth/login',
+    REGISTER: '/auth/register',
     LOGOUT: '/auth/logout',
-    REFRESH: '/auth/refresh',
-    ME: '/auth/me',
+    ME: '/auth/me'
   },
+  API_ROOT: '/api',
   PATIENTS: {
     LIST: '/patients',
     DETAIL: (id: string) => `/patients/${id}`,
