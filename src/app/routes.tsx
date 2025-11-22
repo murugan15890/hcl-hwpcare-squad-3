@@ -6,6 +6,7 @@ import Button from '@/components/ui/Button';
 const Login = lazy(() => import('@/pages/Login'));
 const DashboardPatient = lazy(() => import('@/pages/DashboardPatient'));
 const DashboardProvider = lazy(() => import('@/pages/DashboardProvider'));
+const PatientDetail = lazy(() => import('@/pages/PatientDetail'));
 const PublicHealth = lazy(() => import('@/pages/PublicHealth'));
 
 // Loading fallback component
@@ -57,6 +58,16 @@ const router = createBrowserRouter([
       <ProtectedRoute>
         <Suspense fallback={<LoadingFallback />}>
           <DashboardProvider />
+        </Suspense>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/patients/:patientId',
+    element: (
+      <ProtectedRoute>
+        <Suspense fallback={<LoadingFallback />}>
+          <PatientDetail />
         </Suspense>
       </ProtectedRoute>
     ),

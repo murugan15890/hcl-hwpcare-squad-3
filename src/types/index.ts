@@ -22,6 +22,26 @@ export interface Patient {
   medicalRecordNumber: string;
 }
 
+export interface PatientGoal {
+  id: string;
+  title: string;
+  description: string;
+  targetDate: string;
+  status: 'in-progress' | 'completed' | 'not-started';
+  progress: number; // 0-100
+  category: string;
+}
+
+export interface PatientCompliance {
+  id: string;
+  metric: string;
+  value: number;
+  target: number;
+  unit: string;
+  status: 'compliant' | 'non-compliant' | 'at-risk';
+  lastUpdated: string;
+}
+
 export interface Provider {
   id: string;
   name: string;
