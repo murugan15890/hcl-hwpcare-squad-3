@@ -9,11 +9,18 @@ import { VirtualizedList } from '@/components/common/VirtualizedList';
 const DashboardPatient = memo(() => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.auth);
+  // const { user } = useAppSelector((state) => state.auth);
+  const stored = localStorage.getItem("user");
+  const user = stored ? JSON.parse(stored) : null;
+
+
+  console.log("user", user);
+
   const { patients } = useAppSelector((state) => state.patient);
 
   const handleLogout = useCallback(() => {
     dispatch(logout());
+    localStorage.removeItem("users");
     navigate('/login');
   }, [dispatch, navigate]);
 
@@ -46,7 +53,7 @@ const DashboardPatient = memo(() => {
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-gray-900">Patient Dashboard</h1>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600">Welcome, {user?.name}</span>
+              <span className="text-sm text-gray-600">Welcome, {user?.firstName} {user?.lastName}</span>
               <Button variant="outline" size="sm" onClick={handleLogout}>
                 Logout
               </Button>

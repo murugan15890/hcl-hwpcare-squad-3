@@ -102,7 +102,7 @@ const Auth = memo(() => {
 
         const { user, token } = res.data;
         dispatch(setCredentials({ user, token }));
-
+        localStorage.setItem("users",JSON.stringify(user) );
         switch (user?.role) {
           case "Provider":
             return navigate('/dashboard/provider');
