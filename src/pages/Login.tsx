@@ -16,7 +16,7 @@ const LOGO_PATH = 'https://static.vecteezy.com/system/resources/previews/035/577
 
 const loginSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  password: z.string().min(3, 'Password must be at least 3 characters'),
 });
 type LoginValues = z.infer<typeof loginSchema>;
 
@@ -25,7 +25,7 @@ const registerSchema = z
     firstName: z.string().min(1, 'First name is required'),
     lastName: z.string().min(1, 'Last name is required'),
     email: z.string().min(1, 'Email is required').email('Invalid email'),
-    password: z.string().min(6, 'Password must be at least 6 characters'),
+    password: z.string().min(3, 'Password must be at least 3 characters'),
     confirmPassword: z.string().min(6, 'Confirm your password'),
     phone: z.string().optional().or(z.literal('')),
     dob: z.string().optional().or(z.literal('')),
@@ -45,12 +45,10 @@ const registerSchema = z
   });
 type RegisterValues = z.infer<typeof registerSchema>;
 
-/* ----------------- Auth Component ----------------- */
+
 const Auth = memo(() => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
-  // toggle between 'login' and 'register'
   const [mode, setMode] = useState<'login' | 'register'>('login');
 
   // login form
@@ -97,7 +95,7 @@ const Auth = memo(() => {
       setLoginServerError(null);
       setLoginLoading(true);
       try {
-        const res = await axiosClient.post("/users", {
+        const res = await axiosClient.post(API_ENDPOINTS.AUTH.LOGIN, {
           email: data.email,
           password: data.password,
         });
