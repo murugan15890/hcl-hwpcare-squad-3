@@ -35,6 +35,7 @@ export const ROUTES = {
   LOGIN: '/login',
   DASHBOARD_PATIENT: '/dashboard/patient',
   DASHBOARD_PROVIDER: '/dashboard/provider',
+  PATIENT_DETAIL: (id: string) => `/patients/${id}`,
   PUBLIC_HEALTH: '/public-health',
 } as const;
 
