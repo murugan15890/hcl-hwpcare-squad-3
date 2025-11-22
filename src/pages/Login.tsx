@@ -103,15 +103,17 @@ const Auth = memo(() => {
         const { user, token } = res.data;
         dispatch(setCredentials({ user, token }));
         localStorage.setItem("users",JSON.stringify(user) );
+
+        console.log("user?.role", user?.role);
         switch (user?.role) {
-          case "Provider":
+          case "provider":
             return navigate('/dashboard/provider');
-          case "Admin":
+          case "admin":
             return navigate('/dashboard/admin');
-          case "Patient":
+          case "patient":
             return navigate('/dashboard/patient');
           default: 
-            return navigate('/dashboard/provider');
+            return navigate('/');
         }
       } catch (err: unknown) {
         const msg = (err as any)?.response?.data?.message ?? (err instanceof Error ? err.message : 'Login failed');
