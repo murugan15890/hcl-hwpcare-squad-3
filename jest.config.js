@@ -1,14 +1,16 @@
-import type { Config } from 'jest';
 import { pathsToModuleNameMapper } from 'ts-jest';
-import tsconfig from './tsconfig.json';
 
-const config: Config = {
+/** @type {import('jest').Config} */
+const config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/src'],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
   moduleNameMapper: {
-    ...pathsToModuleNameMapper((tsconfig.compilerOptions?.paths || {}) as Record<string, string[]>, { prefix: '<rootDir>/' }),
+    ...pathsToModuleNameMapper(
+      { '@/*': ['./src/*'] },
+      { prefix: '<rootDir>/' }
+    ),
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
   setupFilesAfterEnv: ['<rootDir>/src/tests/setup.ts'],
@@ -29,13 +31,17 @@ const config: Config = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   transform: {
-    '^.+\\.(ts|tsx)$': ['ts-jest', {
-      tsconfig: {
-        jsx: 'react-jsx',
+    '^.+\\.(ts|tsx)$': [
+      'ts-jest',
+      {
+        tsconfig: {
+          jsx: 'react-jsx',
+          module: 'commonjs',
+          moduleResolution: 'node',
+        },
       },
-    }],
+    ],
   },
 };
 
 export default config;
-

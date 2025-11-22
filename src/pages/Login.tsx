@@ -1,11 +1,10 @@
 import { memo, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAppDispatch } from '@/app/hooks';
-import { setCredentials } from '@/features/auth/authSlice';
+import { loginUser } from '@/features/auth/authSlice';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import axiosClient from '@/utils/axiosClient';
-import { API_ENDPOINTS } from '@/utils/constants';
+import { ROUTES } from '@/utils/constants';
 
 const Login = memo(() => {
   const navigate = useNavigate();
@@ -22,24 +21,26 @@ const Login = memo(() => {
       setIsLoading(true);
 
       try {
-        const response = await axiosClient.post(API_ENDPOINTS.AUTH.LOGIN, {
-          email,
-          password,
-        });
-
-        const { user, token } = response.data;
-        dispatch(setCredentials({ user, token }));
+        const result = await dispatch(
+          loginUser({ email, password })
+        ).unwrap();
 
         // Navigate based on user role
-        if (user.role === 'patient') {
-          navigate('/dashboard/patient');
-        } else if (user.role === 'provider') {
-          navigate('/dashboard/provider');
+        if (result.user.role === 'patient') {
+          navigate(ROUTES.DASHBOARD_PATIENT);
+        } else if (result.user.role === 'provider') {
+          navigate(ROUTES.DASHBOARD_PROVIDER);
+        } else if (result.user.role === 'admin' || result.user.role === 'superadmin') {
+          navigate(ROUTES.DASHBOARD_ADMIN);
         } else {
-          navigate('/dashboard/patient');
+          navigate(ROUTES.DASHBOARD_PATIENT);
         }
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+        setError(
+          err instanceof Error
+            ? err.message
+            : 'Invalid email or password. Please try again.'
+        );
       } finally {
         setIsLoading(false);
       }
@@ -65,7 +66,10 @@ const Login = memo(() => {
           )}
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Email
             </label>
             <input
@@ -80,7 +84,10 @@ const Login = memo(() => {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Password
             </label>
             <input
@@ -97,6 +104,18 @@ const Login = memo(() => {
           <Button type="submit" isLoading={isLoading} className="w-full">
             Sign In
           </Button>
+
+          <div className="text-center">
+            <p className="text-sm text-gray-600">
+              Don't have an account?{' '}
+              <Link
+                to={ROUTES.REGISTER}
+                className="text-healthcare-blue hover:underline font-medium"
+              >
+                Register as Patient
+              </Link>
+            </p>
+          </div>
         </form>
       </Card>
     </div>

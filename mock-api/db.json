@@ -1,0 +1,225 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "superadmin@healthcare.com",
+      "password": "admin123",
+      "name": "Super Admin",
+      "role": "superadmin",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "email": "admin@healthcare.com",
+      "password": "admin123",
+      "name": "Admin User",
+      "role": "admin",
+      "createdAt": "2024-01-02T00:00:00Z",
+      "updatedAt": "2024-01-02T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "email": "provider@healthcare.com",
+      "password": "provider123",
+      "name": "Dr. John Smith",
+      "role": "provider",
+      "createdAt": "2024-01-03T00:00:00Z",
+      "updatedAt": "2024-01-03T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "email": "patient@example.com",
+      "password": "patient123",
+      "name": "Jane Doe",
+      "role": "patient",
+      "createdAt": "2024-01-04T00:00:00Z",
+      "updatedAt": "2024-01-04T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "email": "patient2@example.com",
+      "password": "patient123",
+      "name": "John Smith",
+      "role": "patient",
+      "createdAt": "2024-01-05T00:00:00Z",
+      "updatedAt": "2024-01-05T00:00:00Z"
+    },
+    {
+      "email": "test@test.com",
+      "password": "test123",
+      "name": "test",
+      "role": "patient",
+      "createdAt": "2025-11-22T12:28:45.784Z",
+      "updatedAt": "2025-11-22T12:28:45.784Z",
+      "id": "a1KcvA3"
+    },
+    {
+      "email": "patient11@test.com",
+      "password": "test1234",
+      "name": "patient11",
+      "role": "patient",
+      "createdAt": "2025-11-22T12:33:32.661Z",
+      "updatedAt": "2025-11-22T12:33:32.661Z",
+      "id": "fu3lv7L"
+    }
+  ],
+  "patientProfiles": [
+    {
+      "userId": "4",
+      "dateOfBirth": "1990-05-17",
+      "phone": "+1234567890",
+      "address": "123 Main St, City, State 12345",
+      "medicalRecordNumber": "MRN-001",
+      "emergencyContact": {
+        "name": "John Doe",
+        "phone": "+1234567891",
+        "relationship": "Spouse"
+      },
+      "allergies": [
+        "Peanuts",
+        "Penicillin"
+      ],
+      "medications": [
+        "Aspirin",
+        "Vitamin Ds"
+      ],
+      "updatedAt": "2025-11-22T11:47:44.031Z",
+      "id": "1"
+    }
+  ],
+  "providers": [
+    {
+      "id": "1",
+      "userId": "3",
+      "name": "Dr. John Smith",
+      "specialty": "Cardiology",
+      "email": "provider@healthcare.com",
+      "phone": "+1234567892",
+      "licenseNumber": "LIC-001",
+      "createdAt": "2024-01-03T00:00:00Z",
+      "updatedAt": "2024-01-03T00:00:00Z"
+    }
+  ],
+  "goals": [
+    {
+      "userId": "4",
+      "type": "sleep",
+      "target": 8,
+      "current": 8,
+      "unit": "hours",
+      "date": "2024-01-15",
+      "completed": true,
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "userId": "4",
+      "type": "steps",
+      "target": 10000,
+      "current": 8500,
+      "unit": "steps",
+      "date": "2024-01-15",
+      "completed": false,
+      "createdAt": "2024-01-15T00:00:00Z",
+      "updatedAt": "2024-01-15T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "userId": "4",
+      "type": "water",
+      "target": 8,
+      "current": 6,
+      "unit": "glasses",
+      "date": "2024-01-15",
+      "completed": false,
+      "createdAt": "2024-01-15T00:00:00Z",
+      "updatedAt": "2024-01-15T00:00:00Z"
+    },
+    {
+      "userId": "4",
+      "type": "exercise",
+      "target": 30,
+      "current": 0,
+      "unit": "minutes",
+      "date": "2025-11-22",
+      "completed": false,
+      "id": "7g2UFld"
+    },
+    {
+      "userId": "4",
+      "type": "medication",
+      "target": 30,
+      "current": 20,
+      "unit": "doses",
+      "date": "2025-11-22",
+      "completed": false,
+      "id": "ZGp2XkN"
+    }
+  ],
+  "reminders": [
+    {
+      "id": "1",
+      "userId": "4",
+      "title": "Morning Medication",
+      "description": "Take prescribed medication with breakfast",
+      "type": "medication",
+      "scheduledDate": "2024-01-16",
+      "scheduledTime": "08:00",
+      "completed": false,
+      "priority": "high",
+      "createdAt": "2024-01-10T00:00:00Z",
+      "updatedAt": "2024-01-10T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "userId": "4",
+      "title": "Annual Checkup",
+      "description": "Schedule annual health checkup",
+      "type": "checkup",
+      "scheduledDate": "2024-01-20",
+      "completed": false,
+      "priority": "medium",
+      "createdAt": "2024-01-12T00:00:00Z",
+      "updatedAt": "2024-01-12T00:00:00Z"
+    }
+  ],
+  "providerAssignments": [
+    {
+      "id": "1",
+      "providerId": "3",
+      "patientId": "4",
+      "assignedAt": "2024-01-05T00:00:00Z",
+      "assignedBy": "2",
+      "status": "active",
+      "notes": "Initial assignment"
+    }
+  ],
+  "logs": [
+    {
+      "id": "1",
+      "userId": "4",
+      "action": "login",
+      "resource": "auth",
+      "role": "patient",
+      "timestamp": "2024-01-15T10:00:00Z",
+      "metadata": {
+        "ip": "192.168.1.1",
+        "userAgent": "Mozilla/5.0"
+      }
+    },
+    {
+      "id": "2",
+      "userId": "2",
+      "action": "assign_patient",
+      "resource": "providerAssignments",
+      "resourceId": "1",
+      "role": "admin",
+      "timestamp": "2024-01-05T10:00:00Z",
+      "metadata": {
+        "providerId": "3",
+        "patientId": "4"
+      }
+    }
+  ]
+}

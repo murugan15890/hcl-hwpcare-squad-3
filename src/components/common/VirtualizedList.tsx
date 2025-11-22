@@ -21,7 +21,7 @@ function VirtualizedListComponent<T>({
   const Row = useMemo(
     () =>
       memo(({ index, style }: ListChildComponentProps) => (
-        <div style={style} className="px-4 py-2">
+        <div style={{ ...style, paddingLeft: '0.5rem', paddingRight: '0.5rem', paddingBottom: '0.75rem' }}>
           {renderItem(items[index], index)}
         </div>
       )),
@@ -37,6 +37,7 @@ function VirtualizedListComponent<T>({
         itemCount={items.length}
         itemSize={itemHeight}
         width={width}
+        style={{ overflowX: 'hidden' }}
       >
         {Row}
       </FixedSizeList>

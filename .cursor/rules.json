@@ -1,0 +1,20 @@
+{
+    "rules": [
+      {
+        "pattern": "**/*.tsx",
+        "description": "All React components must use TypeScript, React 19, functional components, and Tailwind CSS."
+      },
+      {
+        "pattern": "src/features/**",
+        "description": "Use Redux Toolkit slices, async thunks, and strict typing in all state management code."
+      },
+      {
+        "pattern": "src/api/**",
+        "description": "Use Axios client with interceptors, TypeScript interfaces, and repository pattern."
+      },
+      {
+        "pattern": "src/components/**",
+        "description": "All components must be memoized using React.memo unless props change frequently."
+      }
+    ]
+  }  

@@ -1,9 +1,10 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { store } from '@/app/store';
 import { logout } from '@/features/auth/authSlice';
+import { MOCK_API_CONFIG } from './constants';
 
 const axiosClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || MOCK_API_CONFIG.BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -29,7 +30,10 @@ axiosClient.interceptors.request.use(
 
 // Response interceptor - handle 401 and logout
 axiosClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    // JSON Server returns arrays directly, wrap single item responses if needed
+    return response;
+  },
   (error: AxiosError) => {
     if (error.response?.status === 401) {
       store.dispatch(logout());
