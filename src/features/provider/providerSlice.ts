@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { Provider } from '@/types';
+import type { Provider, Patient } from '@/types';
 
 interface ProviderState {
   providers: Provider[];
   selectedProvider: Provider | null;
+  assignedPatients: Patient[];
   isLoading: boolean;
   error: string | null;
 }
@@ -11,6 +12,7 @@ interface ProviderState {
 const initialState: ProviderState = {
   providers: [],
   selectedProvider: null,
+  assignedPatients: [],
   isLoading: false,
   error: null,
 };
@@ -40,6 +42,19 @@ const providerSlice = createSlice({
     setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
     },
+    setAssignedPatients: (state, action: PayloadAction<Patient[]>) => {
+      state.assignedPatients = action.payload;
+    },
+    addAssignedPatient: (state, action: PayloadAction<Patient>) => {
+      if (!state.assignedPatients.find((p) => p.id === action.payload.id)) {
+        state.assignedPatients.push(action.payload);
+      }
+    },
+    removeAssignedPatient: (state, action: PayloadAction<string>) => {
+      state.assignedPatients = state.assignedPatients.filter(
+        (p) => p.id !== action.payload
+      );
+    },
   },
 });
 
@@ -50,6 +65,9 @@ export const {
   setSelectedProvider,
   setLoading: setProviderLoading,
   setError: setProviderError,
+  setAssignedPatients,
+  addAssignedPatient,
+  removeAssignedPatient,
 } = providerSlice.actions;
 export default providerSlice.reducer;
 
